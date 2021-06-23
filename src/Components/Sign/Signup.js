@@ -21,11 +21,21 @@ export default function Signup() {
                 setWait(false); 
             }, 100);
         }
-        //código de contato com o servidor e redirecionamento
-        setTimeout(() => {
+        const body = {
+            name,
+            email,
+            password
+        }
+        const request = axios.post('http://localhost:4000/sign-up', body);
+        request.then(r => {
             setWait(false);
+            alert('Cadastro efetuado!');
             history.push("/sign-in");
-        }, 2000); //teste apenas
+        });
+        request.catch(r => {
+            setWait(false);
+            alert('E-mail em uso.');
+        });
     }
 
     return (

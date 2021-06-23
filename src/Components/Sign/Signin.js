@@ -1,6 +1,7 @@
 import { Container, Logo, Input, Button } from './Styled.js';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import UserContext from '../../Contexts/UserContext.js';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 
@@ -9,15 +10,25 @@ export default function Signin() {
     const [password, setPassword] = useState('');
     const [wait, setWait] = useState(false);
     const history = useHistory();
+    const { setUser } = useContext(UserContext);
 
     function signin(e) {
         e.preventDefault();
         setWait(true);
-        //código de contato com o servidor e redirecionamento
-        setTimeout(() => {
+        const body = {
+            email,
+            password
+        }
+        const request = axios.post('http://localhost:4000/sign-in', body);
+        request.then(r => {
             setWait(false);
+            setUser(r.data);
             history.push("/");
-        }, 2000); //teste apenas
+        });
+        request.catch(r => {
+            setWait(false);
+            alert('Algo deu errado.');
+        });
     }
 
     return (
