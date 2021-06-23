@@ -1,21 +1,23 @@
-import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Resetcss from './Resetcss.js';
 
-import Login from './Login/Login.js';
-import Signin from './Login/Signin.js';
+import Signin from './Sign/Signin.js';
+import Signup from './Sign/Signup.js';
+import Home from './Home'
 
 export default function App() {
   return (
     <BrowserRouter>
-      <GlobalStyle />
+      <Resetcss />
       <Switch>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/signin">
+        <Route path="/sign-in">
           <Signin />
         </Route>
-        <Route path="/home">
+        <Route path="/sign-up">
+          <Signup />
+        </Route>
+        <Route path="/" exact>
+          <Home />
         </Route>
         <Route path="/new-income">
         </Route>
@@ -27,27 +29,3 @@ export default function App() {
     </BrowserRouter>
   )
 }
-
-const GlobalStyle = createGlobalStyle`
-  * {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
-    box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
-    font-size: inherit;
-    color: inherit;
-    text-decoration: none;
-  }
-
-  body {
-    background-color: #8D18BE;
-  }
-`;
-/*
-font-family: 'Raleway', sans-serif;
-font-family: 'Saira Stencil One', cursive;
-*/
