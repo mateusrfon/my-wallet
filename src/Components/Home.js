@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
     const [transactions, setTransactions] = useState(false);
+    const [balance, setBalance] = useState(0);
     const { user, setUser } = useContext(UserContext);
     const { name, token } = user;
     const history = useHistory();
@@ -28,6 +29,10 @@ export default function Home() {
         request.then(r => {
             if (r.data.length > 0 ) {
                 setTransactions(r.data);
+                const balance = r.data.reduce((acc,item) => {
+                    return acc + item.value
+                }, 0);
+                setBalance(balance);
             }
         });
     }, []);
@@ -43,19 +48,34 @@ export default function Home() {
                 <img src={logout} alt="logout" onClick={signout}/>
             </Head>
             <Entries>
-                {transactions 
-                    ? transactions.map(item => {
-                            return (
-                                <li>
-                                    <div>
-                                        <span class="date">{dayjs(item.date).format('DD/MM')}</span>
-                                        <span class="description">{item.description}</span>
-                                    </div>
-                                    <span class="value">{(item.value/100).toFixed(2).replace('.',',')}</span>
-                                </li>
-                            )
-                        })
-                    : <div>Não há registros de<br/>entrada ou saída</div>}
+                <Transactions>
+                    {transactions 
+                        ? transactions.map(item => {
+                                return (
+                                    <li key={item.id}>
+                                        <div>
+                                            <span className="date">
+                                                {dayjs(item.date).format('DD/MM')}
+                                            </span>
+                                            <span className="description">
+                                                {item.description}
+                                            </span>
+                                        </div>
+                                        <Value value={item.value >= 0 ? 'positive' : 'negative'}>
+                                            {(item.value/100).toFixed(2).replace('.',',')}
+                                        </Value>
+                                    </li>
+                                )
+                            })
+                        : <div className="empty">Não há registros de<br/>entrada ou saída</div>}
+                </Transactions>
+                {transactions ? <Balance>
+                                    <span>SALDO</span> 
+                                    <Value value={balance >= 0 ? 'positive' : 'negative'}>
+                                        {(balance/100).toFixed(2).replace('.',',')}
+                                    </Value>
+                                </Balance> 
+                            : ''}
             </Entries>
             <Buttons>
                 <Link to="/new-income">
@@ -105,7 +125,15 @@ const Entries = styled.ul`
     border-radius: 5px;
     list-style-type: none;
     padding: 23px 11px 10px 12px;
-    >div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow-y: scroll;
+`;
+
+const Transactions = styled.div`
+    width: 100%;
+    .empty {
         width: 100%;
         height: 100%;
         display: flex;
@@ -128,9 +156,21 @@ const Entries = styled.ul`
     .description {
         color: #000000;
     }
-    .value {
-        color: #C70000;
-    }
+`;
+
+const Balance = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #000000;
+    font-weight: 700;
+    font-size: 17px;
+`;
+
+const Value = styled.span`
+    font-weight: 400;
+    color: ${props => props.value === 'positive' ? '#03AC00' : '#C70000'}
 `;
 
 const Buttons = styled.div`
