@@ -22,7 +22,7 @@ export default function Home() {
         headers: {
             Authorization: `Bearer ${token}`
         }
-    }
+    };
 
     useEffect(() => {
         const request = axios.get("http://localhost:4000/transactions", config);
@@ -41,13 +41,15 @@ export default function Home() {
         setUser({ user: '', token: ''});
     }
 
+    if (transactions) document.getElementById("entries").lastElementChild.scrollIntoView();
+
     return (
         <Container>
             <Head>
                 <span>{`Olá, ${name}`}</span>
                 <img src={logout} alt="logout" onClick={signout}/>
             </Head>
-            <Entries>
+            <Entries id="entries">
                 <Transactions>
                     {transactions 
                         ? transactions.map(item => {

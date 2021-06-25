@@ -5,10 +5,11 @@ import React, { useState } from 'react';
 
 import Signin from './Sign/Signin.js';
 import Signup from './Sign/Signup.js';
-import Home from './Home'
+import Home from './Home.js';
+import NewEntry from './NewEntry.js';
 
 export default function App() {
-  const [user, setUser] = useState({ user: '', token: ''});
+  const [user, setUser] = useState({ name: '', token: '' });
 
   return (
     <BrowserRouter>
@@ -25,8 +26,10 @@ export default function App() {
             <Home />
           </Route>
           <Route path="/new-income">
+            <NewEntry type='income'/>
           </Route>
           <Route path="/new-expense">
+            <NewEntry type='expense'/>
           </Route>
           <Route path="/balance">
           </Route>
