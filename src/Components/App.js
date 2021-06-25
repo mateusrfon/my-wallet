@@ -31,8 +31,6 @@ export default function App() {
           <Route path="/new-expense">
             <NewEntry type='expense'/>
           </Route>
-          <Route path="/balance">
-          </Route>
         </UserContext.Provider>
       </Switch>
     </BrowserRouter>
