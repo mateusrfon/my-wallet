@@ -1,9 +1,9 @@
-import { Container, Logo, Input, Button } from './Styled.js';
-import React from 'react';
-import { useState, useContext } from 'react';
-import UserContext from '../../Contexts/UserContext.js';
+import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+
+import UserContext from '../contexts/UserContext.js';
+import { Container, Logo, Input, Button } from '../components/styles/SignStyles.js';
 
 export default function Signin() {
     const [email, setEmail] = useState('');

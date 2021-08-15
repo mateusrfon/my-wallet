@@ -1,12 +1,12 @@
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Resetcss from './Resetcss.js';
-import UserContext from '../Contexts/UserContext.js';
 import React, { useState } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Resetcss from './components/Resetcss.js';
+import UserContext from './contexts/UserContext.js';
 
-import Signin from './Sign/Signin.js';
-import Signup from './Sign/Signup.js';
-import Home from './Home.js';
-import NewEntry from './NewEntry.js';
+import Signin from './pages/Signin.js';
+import Signup from './pages/Signup.js';
+import Home from './pages/Home.js';
+import NewEntry from './pages/NewEntry.js';
 
 export default function App() {
   const [user, setUser] = useState({ name: '', token: '' });

@@ -1,8 +1,8 @@
-import { Container, Logo, Input, Button } from './Styled.js';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
+
+import { Container, Logo, Input, Button } from '../components/styles/SignStyles.js';
 
 export default function Signup() {
     const [name, setName] = useState('');
