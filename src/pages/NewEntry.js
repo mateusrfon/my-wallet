@@ -29,7 +29,7 @@ export default function NewEntry({ type }) {
             description
         };
         
-        const request = axios.post('http://localhost:4000/transactions', body, config);
+        const request = axios.post('http://localhost:4000/transaction', body, config);
         request.then(() => {
             setWait(false);
             history.push("/");
