@@ -28,7 +28,8 @@
 
 *API required (go to https://github.com/mateusrfon/my-wallet-api and follow the instructions).
 
-Clone this repo and then in the project directory you can run:
+Clone this repo with 'git clone https://github.com/mateusrfon/my-wallet.git' on a terminal <br/>
+Go to the directory with 'cd my-wallet' and then you can run:
 
 ### `npm i`
 Installs all dependencies
