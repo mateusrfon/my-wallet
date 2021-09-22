@@ -3,6 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
   height: 100vh;
   width: 90%;
+  max-width: 600px;
   margin: auto;
   display: flex;
   flex-direction: column;
@@ -39,7 +40,8 @@ const Entries = styled.ul`
 const Transactions = styled.div`
   width: 100%;
   .empty {
-    width: 100%;
+    margin: auto;
+    width: 80%;
     height: 100%;
     display: flex;
     align-items: center;

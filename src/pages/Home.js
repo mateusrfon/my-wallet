@@ -82,11 +82,7 @@ export default function Home() {
               );
             })
           ) : (
-            <div className="empty">
-              Não há registros de
-              <br />
-              entrada ou saída
-            </div>
+            <div className="empty">Não há registros de entrada ou saída</div>
           )}
         </Transactions>
         {transactions ? (
