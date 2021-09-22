@@ -1,3 +1,5 @@
+<img src="https://github.com/mateusrfon/my-wallet/blob/main/mywallet.gif">
+
 ## 📕 Summary
 
 - [🛠️ Technologies ](#technologies)
